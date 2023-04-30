@@ -10,7 +10,7 @@ import { FaStar, FaRegEye } from "react-icons/fa";
 const NewsCard = ({ news }) => {
     const { _id, title, image_url: image, details, rating, author, total_view } = news
     return (
-        <Card className="mb-5">
+        <Card className="mb-5 ">
             <Card.Header className="d-flex align-items-center justify-content-between">
                 <div className=" flex-grow-1 d-flex gap-3 align-items-center">
                     <img className="rounded-circle" style={{ width: "40px", height: '40px' }} src={author?.img} alt="" />
@@ -29,7 +29,7 @@ const NewsCard = ({ news }) => {
                 <Card.Title className="mb-3">{title}</Card.Title>
                 <Card.Img variant="top" src={image} />
                 <Card.Text className="mt-2">
-                    {details.length < 250 ? <>{details}</>
+                    {details.length < 200 ? <>{details}</>
                         :
                         <>
                             <>{details.slice(0, 200)}...</>

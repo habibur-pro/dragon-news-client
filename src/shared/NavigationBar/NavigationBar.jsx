@@ -1,11 +1,18 @@
 import React, { useContext } from 'react';
 import { Button, Container, Nav, Navbar } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../provider/AuthProvider';
 import userImage from '../../assets/user.png'
 
 const NavigationBar = () => {
-    const { user } = useContext(AuthContext)
+
+    const { user, logOut } = useContext(AuthContext)
+
+    const handleLogOut = () => {
+        logOut()
+            .then()
+            .catch(error => console.log(error))
+    }
     return (
         <Container className='mb-5 '>
             <Navbar className='mt-3 p-1 align-items-center' collapseOnSelect expand="lg" bg="light" variant="light">
@@ -29,7 +36,7 @@ const NavigationBar = () => {
                             }
                             <Nav.Link >
                                 {
-                                    user ? <Button variant='dark rounded-0 px-3 rounded-sm'>Logout</Button>
+                                    user ? <Button onClick={handleLogOut} variant='dark rounded-0 px-3 rounded-sm'>Logout</Button>
                                         :
                                         <Link to='/login'>
                                             <Button variant='dark rounded-0 px-3 rounded-sm'>Login</Button>

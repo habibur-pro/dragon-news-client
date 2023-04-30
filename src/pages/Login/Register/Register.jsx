@@ -1,11 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useContext } from 'react';
 import { Button, Col, Container, Form, Row } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../provider/AuthProvider';
 
 const Register = () => {
-    const { createUser } = useContext(AuthContext)
+    const { createUser, updateUserProfile, user } = useContext(AuthContext)
+    const [acceptTerms, setAcceptTerms] = useState(false)
 
     const handelLogin = event => {
         event.preventDefault()
@@ -21,7 +22,17 @@ const Register = () => {
             .then(result => {
                 const createdUser = result.user;
                 console.log(createdUser)
+                updateUserProfile(name)
+                    .then(updateName => {
+                        console.log(user)
+                    })
+                    .catch(error => console.log(error))
+
+
             })
+
+        // set usr name 
+
     }
     return (
         <Container>
@@ -71,12 +82,13 @@ const Register = () => {
                         </Form.Group>
                         <Form.Group className="mb-3" >
                             <Form.Check
+                                onClick={() => setAcceptTerms(!acceptTerms)}
                                 type="checkbox"
                                 label="Accept Terms and Condition"
                                 name='acceptTerms'
                             />
                         </Form.Group>
-                        <Button variant="secondary" type="submit" className='w-100'>
+                        <Button disabled={!acceptTerms} variant="secondary" type="submit" className='w-100'>
                             Register
                         </Button>
                         <br />

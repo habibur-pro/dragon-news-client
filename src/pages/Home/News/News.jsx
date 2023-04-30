@@ -21,7 +21,7 @@ const News = () => {
                     {details}
                 </Card.Text>
                 <Button variant="danger" className="inline">
-                    <Link to={`/categories/${category_id}`} className="text-white text-decoration-none">
+                    <Link to={`/category/${category_id}`} className="text-white text-decoration-none">
                         <FaArrowLeft className="me-2" />
                         All news in this category
                     </Link>
